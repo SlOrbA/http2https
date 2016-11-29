@@ -1,0 +1,20 @@
+{
+  "name": "http2https",
+  "version": "1.0.0",
+  "description": "A dumb proxy that redirects all requests from http to https",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "http",
+    "proxy",
+    "redirect",
+    "https"
+  ],
+  "author": "Davide Bertola",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
