@@ -13,5 +13,5 @@ RUN npm install
 
 ADD . /data
 RUN npm install
-ENV PORT=80
+ENV PORT=8080
 CMD ["node", "index.js"]
