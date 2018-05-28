@@ -1,17 +1,18 @@
-FROM node:5.12
-WORKDIR /data
-ENV NODE_PATH /usr/local/lib/node_modules
-ENV PATH=$PATH:/node_modules/.bin
-ENV JOBS 4
-RUN npm set progress=false
+FROM node:6-slim
 
-# http registry is faster, apparently
-RUN npm config set registry http://registry.npmjs.org/
+COPY .env /data/http2https/.env
 
-ADD package.json /data/package.json
-RUN npm install
+COPY package.json /data/http2https/package.json
+COPY node_modules/ /data/http2https/node_modules
 
-ADD . /data
-RUN npm install
-ENV PORT=8080
-CMD ["node", "index.js"]
+RUN cd /data/http2https && npm prune 
+
+COPY config/ /data/http2https/config
+COPY dist/ /data/http2https/dist
+
+EXPOSE 4011
+
+USER root
+WORKDIR /data/http2https
+
+CMD ["npm", "run", "start-production"]
