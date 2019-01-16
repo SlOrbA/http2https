@@ -1,18 +1,13 @@
-FROM node:6-slim
+FROM node
 
-COPY .env /data/http2https/.env
+WORKDIR /usr/src/app
 
-COPY package.json /data/http2https/package.json
-COPY node_modules/ /data/http2https/node_modules
+COPY package*.json ./
 
-RUN cd /data/http2https && npm prune 
+RUN npm nstall 
 
-COPY config/ /data/http2https/config
-COPY dist/ /data/http2https/dist
+COPY . .
 
 EXPOSE 4011
 
-USER root
-WORKDIR /data/http2https
-
-CMD ["npm", "run", "start-production"]
+CMD ["npm", "start"]
